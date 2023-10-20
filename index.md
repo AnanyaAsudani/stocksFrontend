@@ -1,34 +1,37 @@
+<!DOCTYPE html>
+<html>
 <head>
     <style>
-        body{
-            align-items: center;
+        body {
             text-align: center;
+            margin: 0;
+            padding: 0;
         }
+
         label {
             display: block;
-            margin-bottom: 5px;
-            margin-top: 30px;
-            align-items: center;
-            text-align: center;
+            margin-top: 20px;
         }
-        select, button {
+
+        input {
             font-size: 16px;
             padding: 10px;
-            margin-bottom: 20px;
-            color: white;
-            align-items: center;
-            text-align: center;
         }
-        select {
-            width: 50%;
-            align-items: center;
-            text-align: center;
-        }
+
         button {
+            background-color: #0073e6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
             cursor: pointer;
-            align-items: center;
-            text-align: center;
+            transition: background-color 0.3s;
         }
+
+        button:hover {
+            background-color: #005cbf;
+        }
+
         #graph {
             width: 100%;
         }
@@ -36,22 +39,13 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-    <label for="stock-select">Select a stock:</label>
-    <select id="stock-select" style = "border: 1px solid black; color: black; align-items: center; text-align: center;">
-        <option value="AAPL">AAPL</option>
-        <option value="GOOGL">GOOGL</option>
-        <option value="AMZN">AMZN</option>
-        <option value="META">META</option>
-        <option value="TSLA">TSLA</option>
-        <option value="SBUX">SBUX</option>
-        <option value="ETSY">ETSY</option>
-        <option value="EBAY">EBAY</option>
-    </select>
-    <button id="collect" style="background-color: #0073e6; border: none; border-radius: 5px; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#005cbf'" onmouseout="this.style.backgroundColor='#0073e6'" onclick="getStockGraph()">Display Graph</button>
+    <label for="stock-input">Enter a stock symbol:</label>
+    <input id="stock-input" type="text" style="border: 1px solid black;">
+    <button id="collect" onclick="getStockGraph()">Display Graph</button>
     <div id="graph"></div>
     <script>
         function getStockGraph() {
-            const selectedStock = document.getElementById('stock-select').value;
+            const selectedStock = document.getElementById('stock-input').value;
             const apiUrl = 'http://localhost:8282/api/stocks/stock_graph/' + selectedStock;
             fetch(apiUrl)
                 .then(response => response.json())
@@ -62,3 +56,4 @@
         }
     </script>
 </body>
+</html>
