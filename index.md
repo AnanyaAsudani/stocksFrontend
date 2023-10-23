@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 <head>
     <style>
         body {
@@ -56,4 +54,4 @@
         }
     </script>
 </body>
-</html>
+
