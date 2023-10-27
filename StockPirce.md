@@ -54,9 +54,11 @@ title: Stock Price
     </div>
 </div>
     <script>
+        const getLatestDataButton = document.getElementById('get-latest-data');
         function getLatestStockData() {
             // get the stock ticker entered by the user
             const stockTicker = document.getElementById("update-input").value;
+            getLatestDataButton.textContent = 'Loading...';
             // make a API request to get the latest stok data
             fetch("http://localhost:8282/api/stocks/latest_data/" + stockTicker)
                 .then(response => response.json())
@@ -70,9 +72,11 @@ title: Stock Price
                     latestDataElement.innerHTML += `<p>Close: $${data.close}</p>`
                     const dataDiv = document.getElementById("data");
             dataDiv.style.display = "block";
+            getLatestDataButton.textContent = 'Get Latest Data';
                 })
                 .catch(error => {
                     console.error("Error:", error);
+                    getLatestDataButton.textContent = 'Get Latest Data';
                 });
         }
         document.getElementById("get-latest-data").addEventListener("click", getLatestStockData);

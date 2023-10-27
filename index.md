@@ -74,13 +74,19 @@
     <script>
         function getStockGraph() {
             const selectedStock = document.getElementById('stock-input').value;
+            const button = document.getElementById('collect');
             const apiUrl = 'http://localhost:8282/api/stocks/stock_graph/' + selectedStock;
+            button.textContent = 'Loading...';
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(graphData => {
                     Plotly.newPlot('graph', graphData.data, graphData.layout);
+                    button.textContent = 'Display Graph';
                 })
-                .catch(error => console.error('Error:', error));
+                .catch(error => {
+            console.error('Error:', error);
+            button.textContent = 'Display Graph';
+        });
         }
     </script>
 </body>

@@ -65,7 +65,8 @@ title: Analyze Price
         const recommendationText = document.getElementById('recommendation-text');
         getLatestDataButton.addEventListener('click', () => {
             const stockTicker = document.getElementById('update-input').value;
-            // Get the recommendation
+            getLatestDataButton.textContent = 'Loading...';
+            // get the recommendation
             fetch(`http://localhost:8282/api/stocks/analyze/${stockTicker}`)
                 .then(response => response.json())
                 .then(recommendationData => {
@@ -73,9 +74,11 @@ title: Analyze Price
                     const reason = recommendationData.reason;
                     recommendationText.textContent = `Recommendation: ${recommendation} (${reason})`;
                     recommendationDiv.style.display = 'block';
+                    getLatestDataButton.textContent = 'Should I Buy?';
                 })
                 .catch(error => {
                     console.error(error);
+                    getLatestDataButton.textContent = 'Should I Buy?';
                 });
         });
     </script>

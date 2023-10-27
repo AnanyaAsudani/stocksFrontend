@@ -46,13 +46,17 @@ title: Optimizer
             margin-left: auto; 
             margin-right: auto; 
         }
+        #stock-form{
+            margin-top: 30px;
+        }
     </style>
 </head>
 <body>
     <h1>Stock Portfolio Optimization</h1>
     <p>This is a portfolio simulator where you can put up to 8 stocks to find the most optimal weighting between them and see it on a graph. There are also other terms that will be defined below.</p>
+    <p>Enter up to 8 stock tickers by adding one and then clicking the add stock button. When you are done, click calculate:</p>
     <form id="stock-form">
-        <label for="update-input">Enter up to 8 stock tickers by adding one and then clicking the add stock button. When you are done, click calculate:</label>
+        <label for="update-input">Input up to 8 stocks: </label>
         <input id="update-input" type="text" style="border: 1px solid black;" placeholder="Enter a ticker(EX: AAPL)">
         <button type="button" id="add-stock">Add stock</button>
         <button type="submit" id="calculate">Calculate</button>
@@ -99,6 +103,7 @@ title: Optimizer
     });
     stockForm.addEventListener("submit", function (e) {
         e.preventDefault();
+        calculateButton.textContent = "Loading...";
         const stockData = { stocks };
         fetch('http://localhost:8282/api/stocks/optimal_weights', {
             method: 'POST',
@@ -153,9 +158,11 @@ title: Optimizer
                 hovermode: 'closest'
             };
             Plotly.newPlot(graphDiv, scatterData, scatterLayout);
+            calculateButton.textContent = "Calculate";
         })
         .catch(error => {
             console.error('Error:', error);
+            calculateButton.textContent = "Calculate";
         });
     });
     const toggleDictionaryButton = document.getElementById("toggleDictionary");
