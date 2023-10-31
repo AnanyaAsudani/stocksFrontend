@@ -90,58 +90,68 @@
         .button:active::before {
             scale: 0.7;
         }
+        .Example{
+            margin-top: 25px;
+        }
+        #image-container {
+            margin-top: 20px;
+        }
+        .container{
+            margin-top: -40px;
+        }
     </style>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 <body>
-<h1>Stock Viewer</h1>
-<p>Welcome to our Stock Viewer app where you can view the graphs and prices of different stocks using their stock ticker (e.g., AAPL, AMZN, etc.). Enter the desired stock ticker in all caps to generate an interactive graph showing data from the last 12 years.</p>
-<div class="container">
-<label for="stock-input">Enter a stock symbol:</label>
-<input id="stock-input" type="text">
-<div class="button-container">
-    <button class="button" id="collect" onclick="getStockGraph()">Display Graph</button>
-</div>
-</div>
-<div id="graph-container">
-    <div id="graph"></div>
-</div>
-<h3>Image Examples:</h3>
-<div id="image-container">
-    <div class="image-box">
-        <img src="https://i.ibb.co/3vqVkLW/SCR-20231025-rrut.png" alt="Image 1">
+    <h1>Stock Viewer</h1>
+    <p>Welcome to our Stock Viewer app where you can view the graphs and prices of different stocks using their stock ticker (e.g., AAPL, AMZN, etc.). Enter the desired stock ticker in all caps to generate an interactive graph showing data from the last 12 years.</p>
+    <div class="container">
+        <label for="stock-input">Enter a stock symbol:</label>
+        <input id="stock-input" type="text">
+        <div class="button-container">
+            <button class="button" id="collect" onclick="getStockGraph()">Display Graph</button>
+        </div>
     </div>
-    <div class="image-box">
-        <img src="https://i.ibb.co/7zG578m/SCR-20231025-rngg.png" alt="Image 2">
+    <div id="graph-container">
+        <div id="graph"></div>
     </div>
-</div>
-<script>
-    function getStockGraph() {
-        const selectedStock = document.getElementById('stock-input').value;
-        const button = document.getElementById('collect');
-        const apiUrl = 'http://localhost:8282/api/stocks/stock_graph/' + selectedStock;
-        button.textContent = 'Loading...';
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(graphData => {
-                Plotly.newPlot('graph', graphData.data, graphData.layout);
-                button.textContent = 'Display Graph';
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                button.textContent = 'Display Graph';
-            });
-    }
-    const stockInput = document.getElementById('stock-input');
-    const collectButton = document.getElementById('collect');
-    stockInput.addEventListener("keydown", function (event) {
-        if (event.key === 'Enter') {
-            getStockGraph();
-        }
-    });
-    collectButton.addEventListener("click", getStockGraph);
-</script>
 
+<h3 class="Example" >Image Examples:</h3>
+    <div id="image-container">
+        <div class="image-box">
+            <img src="https://i.ibb.co/3vqVkLW/SCR-20231025-rrut.png" alt="Image 1">
+        </div>
+        <div class="image-box">
+            <img src="https://i.ibb.co/7zG578m/SCR-20231025-rngg.png" alt="Image 2">
+        </div>
+    </div>
+    <script>
+        function getStockGraph() {
+            const selectedStock = document.getElementById('stock-input').value;
+            const button = document.getElementById('collect');
+            const apiUrl = 'http://localhost:8282/api/stocks/stock_graph/' + selectedStock;
+            button.textContent = 'Loading...';
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(graphData => {
+                    Plotly.newPlot('graph', graphData.data, graphData.layout);
+                    button.textContent = 'Display Graph';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    button.textContent = 'Display Graph';
+                });
+        }
+        const stockInput = document.getElementById('stock-input');
+        const collectButton = document.getElementById('collect');
+        stockInput.addEventListener("keydown", function (event) {
+            if (event.key === 'Enter') {
+                getStockGraph();
+            }
+        });
+        collectButton.addEventListener("click", getStockGraph);
+    </script>
 </body>
+
 </html>

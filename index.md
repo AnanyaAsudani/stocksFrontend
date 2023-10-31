@@ -133,5 +133,3 @@
     <button class="button" onclick="window.location.href='{{site.baseurl}}/optimizer'">Learn More</button>
 </div>
 </body>
-
-</html>
