@@ -90,8 +90,6 @@
         .button:active::before {
             scale: 0.7;
         }
-        /* Add or modify other styles as needed */
-        /* ... */
     </style>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
@@ -102,7 +100,9 @@
 <div class="container">
 <label for="stock-input">Enter a stock symbol:</label>
 <input id="stock-input" type="text">
-<button id="collect" onclick="getStockGraph()">Display Graph</button>
+<div class="button-container">
+    <button class="button" id="collect" onclick="getStockGraph()">Display Graph</button>
+</div>
 </div>
 <div id="graph-container">
     <div id="graph"></div>
@@ -144,3 +144,4 @@
 </script>
 
 </body>
+</html>
