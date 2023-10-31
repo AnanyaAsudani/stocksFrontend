@@ -36,9 +36,9 @@ title: Reader
         input {
             font-size: 16px;
             padding: 10px;
-            border: 1px solid #e81cff; /* Add a #e81cff border around the text boxes */
+            border: 1px solid #e81cff; 
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a glow effect to text boxes */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
         .button-container {
             display: flex;
@@ -60,7 +60,7 @@ title: Reader
             gap: 12px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 14px; /* Make the text smaller */
+            font-size: 14px; 
         }
         .button::before {
             content: '';
@@ -98,8 +98,15 @@ title: Reader
         .Example{
             margin-top: 25px;
         }
-        #image-container {
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px; 
             margin-top: 20px;
+        }
+        .image-box img {
+            border: 5px solid #004d99;
+            border-radius: 8px;
         }
         .container{
             margin-top: -40px;
@@ -123,7 +130,7 @@ title: Reader
     </div>
 
 <h3 class="Example" >Image Examples:</h3>
-    <div id="image-container">
+   <div class="image-container">
         <div class="image-box">
             <img src="https://i.ibb.co/3vqVkLW/SCR-20231025-rrut.png" alt="Image 1">
         </div>
@@ -159,4 +166,3 @@ title: Reader
     </script>
 </body>
 
-</html>
