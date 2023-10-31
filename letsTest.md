@@ -67,7 +67,7 @@
             width: 128px;
             height: 48px;
             border-radius: 10px;
-            background: linear-gradient(-45deg, #e81cff 0%, #004d99 100%);
+            background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100%);
             z-index: -10;
             pointer-events: none;
             transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -90,68 +90,75 @@
         .button:active::before {
             scale: 0.7;
         }
-        .Example{
-            margin-top: 25px;
-        }
-        #image-container {
-            margin-top: 20px;
-        }
-        .container{
-            margin-top: -40px;
-        }
+        /* Add or modify other styles as needed */
+        /* ... */
     </style>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
-
 <body>
-    <h1>Stock Viewer</h1>
-    <p>Welcome to our Stock Viewer app where you can view the graphs and prices of different stocks using their stock ticker (e.g., AAPL, AMZN, etc.). Enter the desired stock ticker in all caps to generate an interactive graph showing data from the last 12 years.</p>
+    <h1>Stock Price Viewer</h1>
     <div class="container">
-        <label for="stock-input">Enter a stock symbol:</label>
-        <input id="stock-input" type="text">
+        <p>Check the latest price for any stock ticker</p>
+        <label for="update-input">Get Latest Stock Data:</label>
+        <input id="update-input" type="text" placeholder="Enter ticker (e.g., AAPL)">
         <div class="button-container">
-            <button class="button" id="collect" onclick="getStockGraph()">Display Graph</button>
+            <button id="get-latest-data" class="button">Latest Data</button>
         </div>
-    </div>
-    <div id="graph-container">
-        <div id="graph"></div>
-    </div>
-
-<h3 class="Example" >Image Examples:</h3>
-    <div id="image-container">
-        <div class="image-box">
-            <img src="https://i.ibb.co/3vqVkLW/SCR-20231025-rrut.png" alt="Image 1">
-        </div>
-        <div class="image-box">
-            <img src="https://i.ibb.co/7zG578m/SCR-20231025-rngg.png" alt="Image 2">
+        <div id="latest-data" class="latest-data"></div>
+        <div id="data" style="display: none;">
+            <h2>What does all this mean?</h2>
+            <button id="toggle-definitions" class="button">Show</button>
+            <div id="definitions" style="display: none;">
+                <p><strong>Open:</strong> The opening price of a stock for the current trading day.</p>
+                <p><strong>High:</strong> The highest price the stock reached during the current trading day.</p>
+                <p><strong>Low:</strong> The lowest price the stock reached during the current trading day.</p>
+                <p><strong>Close:</strong> The closing price of the stock for the current trading day.</p>
+            </div>
         </div>
     </div>
     <script>
-        function getStockGraph() {
-            const selectedStock = document.getElementById('stock-input').value;
-            const button = document.getElementById('collect');
-            const apiUrl = 'http://localhost:8282/api/stocks/stock_graph/' + selectedStock;
-            button.textContent = 'Loading...';
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(graphData => {
-                    Plotly.newPlot('graph', graphData.data, graphData.layout);
-                    button.textContent = 'Display Graph';
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    button.textContent = 'Display Graph';
-                });
+    const getLatestDataButton = document.getElementById('get-latest-data');
+    const updateInput = document.getElementById('update-input');
+    function getLatestStockData() {
+        // get the stock ticker entered by the user
+        const stockTicker = updateInput.value;
+        getLatestDataButton.textContent = 'Loading...';
+        // make an API request to get the latest stock data
+        fetch("http://localhost:8282/api/stocks/latest_data/" + stockTicker)
+            .then(response => response.json())
+            .then(data => {
+                // display the latest stock data on the page
+                const latestDataElement = document.getElementById("latest-data");
+                latestDataElement.innerHTML = `<h2>Latest Stock Data for ${stockTicker.toUpperCase()} In The Last Day:</h2>`;
+                latestDataElement.innerHTML += `<p>Open: $${data.open}</p>`;
+                latestDataElement.innerHTML += `<p>High: $${data.high}</p>`;
+                latestDataElement.innerHTML += `<p>Low: $${data.low}</p>`;
+                latestDataElement.innerHTML += `<p>Close/Last Price: $${data.close}</p>`
+                const dataDiv = document.getElementById("data");
+                dataDiv.style.display = "block";
+                getLatestDataButton.textContent = 'Get Latest Data';
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                getLatestDataButton.textContent = 'Get Latest Data';
+            });
+    }
+    document.getElementById("get-latest-data").addEventListener("click", getLatestStockData);
+    updateInput.addEventListener("keydown", function (event) {
+        if (event.key === 'Enter') {
+            getLatestStockData();
         }
-        const stockInput = document.getElementById('stock-input');
-        const collectButton = document.getElementById('collect');
-        stockInput.addEventListener("keydown", function (event) {
-            if (event.key === 'Enter') {
-                getStockGraph();
-            }
-        });
-        collectButton.addEventListener("click", getStockGraph);
+    });
+    const toggleButton = document.getElementById("toggle-definitions");
+    const definitions = document.getElementById("definitions");
+    toggleButton.addEventListener("click", function () {
+        if (definitions.style.display === "none") {
+            definitions.style.display = "block";
+            toggleButton.textContent = "Hide";
+        } else {
+            definitions.style.display = "none";
+            toggleButton.textContent = "Show";
+        }
+    });
     </script>
 </body>
-
-</html>
