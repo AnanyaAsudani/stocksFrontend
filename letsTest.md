@@ -97,41 +97,50 @@
 </head>
 
 <body>
-
-<h1>Home Page</h1>
+<h1>Stock Viewer</h1>
 <p>Welcome to our Stock Viewer app where you can view the graphs and prices of different stocks using their stock ticker (e.g., AAPL, AMZN, etc.). Enter the desired stock ticker in all caps to generate an interactive graph showing data from the last 12 years.</p>
-
-<!-- Data Reader Section -->
-<p>
-    <strong>Data Reader:</strong> This allows you to view the graph of the stock, zoom in and out; shows you when you times when it would've been best to invest or when to sell, and much more.
-</p>
-<div class="button-container">
-    <button class="button" onclick="window.location.href='{{site.baseurl}}/reader'">Learn More</button>
+<div class="container">
+<label for="stock-input">Enter a stock symbol:</label>
+<input id="stock-input" type="text">
+<button id="collect" onclick="getStockGraph()">Display Graph</button>
 </div>
-
-<!-- Stock Price Viewer Section -->
-<p>
-    <strong>Stock Price Viewer:</strong> Shows very concise data, only consisting of the high, low, close, and open of the user-inputted stock from the previous business day.
-</p>
-<div class="button-container">
-    <button class="button" onclick="window.location.href='{{site.baseurl}}/stock_price'">Learn More</button>
+<div id="graph-container">
+    <div id="graph"></div>
 </div>
-
-<!-- Stock Analyzer Section -->
-<p>
-    <strong>Stock Analyzer:</strong> The user is prompted to input a stock, and using our highly skilled AI, patterns and trends from previous years, and various other useful pieces of data, it will give a prediction on whether you should buy the stock.
-</p>
-<div class="button-container">
-    <button class="button" onclick="window.location.href='{{site.baseurl}}/stock_analyze'">Learn More</button>
+<h3>Image Examples:</h3>
+<div id="image-container">
+    <div class="image-box">
+        <img src="https://i.ibb.co/3vqVkLW/SCR-20231025-rrut.png" alt="Image 1">
+    </div>
+    <div class="image-box">
+        <img src="https://i.ibb.co/7zG578m/SCR-20231025-rngg.png" alt="Image 2">
+    </div>
 </div>
+<script>
+    function getStockGraph() {
+        const selectedStock = document.getElementById('stock-input').value;
+        const button = document.getElementById('collect');
+        const apiUrl = 'http://localhost:8282/api/stocks/stock_graph/' + selectedStock;
+        button.textContent = 'Loading...';
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(graphData => {
+                Plotly.newPlot('graph', graphData.data, graphData.layout);
+                button.textContent = 'Display Graph';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                button.textContent = 'Display Graph';
+            });
+    }
+    const stockInput = document.getElementById('stock-input');
+    const collectButton = document.getElementById('collect');
+    stockInput.addEventListener("keydown", function (event) {
+        if (event.key === 'Enter') {
+            getStockGraph();
+        }
+    });
+    collectButton.addEventListener("click", getStockGraph);
+</script>
 
-<!-- Stock Optimizer Section -->
-<p>
-    <strong>Stock Optimizer:</strong> This page will prompt the user to input up to 8 stocks as a simulated investment portfolio. It will then give the most optimal weighting of each stock using data such as the correlation, volatility, Sharpe Ratio, and more.
-</p>
-<div class="button-container">
-    <button class="button" onclick="window.location.href='{{site.baseurl}}/optimizer'">Learn More</button>
-</div>
 </body>
-
-</html>

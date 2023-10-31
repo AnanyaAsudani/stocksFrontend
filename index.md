@@ -29,9 +29,9 @@
             color: #fff; /* White text color for labels */
         }
         input {
-            font-size: 14px;
+            font-size: 16px;
             padding: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #e81cff; /* Add a #e81cff border around the text boxes */
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a glow effect to text boxes */
         }
@@ -55,7 +55,7 @@
             gap: 12px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 14px !important; /* Make the text smaller */
+            font-size: 14px; /* Make the text smaller */
         }
         .button::before {
             content: '';
@@ -67,7 +67,7 @@
             width: 128px;
             height: 48px;
             border-radius: 10px;
-            background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100%);
+            background: linear-gradient(-45deg, #e81cff 0%, #004d99 100%);
             z-index: -10;
             pointer-events: none;
             transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -130,5 +130,8 @@
     <strong>Stock Optimizer:</strong> This page will prompt the user to input up to 8 stocks as a simulated investment portfolio. It will then give the most optimal weighting of each stock using data such as the correlation, volatility, Sharpe Ratio, and more.
 </p>
 <div class="button-container">
-    <button class="button" onclick="window.location.href='{{site.baseurl}}/optimize'">Learn More</button>
+    <button class="button" onclick="window.location.href='{{site.baseurl}}/optimizer'">Learn More</button>
 </div>
+</body>
+
+</html>
