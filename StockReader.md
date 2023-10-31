@@ -49,6 +49,14 @@ title: Reader
         button:hover {
             background-color: #005cbf;
         }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            max-width: 800px; 
+        }
         #graph-container {
             margin-top: 20px;
             background-color: #fff;
@@ -85,9 +93,11 @@ title: Reader
 <body>
 <h1>Stock Viewer</h1>
 <p>Welcome to our Stock Viewer app where you can view the graphs and prices of different stocks using their stock ticker (e.g., AAPL, AMZN, etc.). Enter the desired stock ticker in all caps to generate an interactive graph showing data from the last 12 years.</p>
+<div class="container">
 <label for="stock-input">Enter a stock symbol:</label>
 <input id="stock-input" type="text">
 <button id="collect" onclick="getStockGraph()">Display Graph</button>
+</div>
 <div id="graph-container">
     <div id="graph"></div>
 </div>
