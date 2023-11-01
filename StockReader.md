@@ -112,6 +112,10 @@ title: Reader
         .container{
             margin-top: -40px;
         }
+        #graph {
+            max-width: 800px;
+            margin: 20px auto;
+        }
     </style>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
