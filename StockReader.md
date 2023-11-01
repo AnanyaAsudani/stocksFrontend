@@ -43,7 +43,8 @@ title: Reader
         .button-container {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 30px;
+            margin-bottom: 30px;
         }
         .button {
             position: relative;
@@ -96,7 +97,7 @@ title: Reader
             scale: 0.7;
         }
         .Example{
-            margin-top: 25px;
+            margin-top: 0px;
         }
         .image-container {
             display: flex;

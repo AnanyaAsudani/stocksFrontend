@@ -111,7 +111,9 @@ title: Stock Price
         <div id="latest-data" class="latest-data"></div>
         <div id="data" style="display: none;">
             <h2>What does all this mean?</h2>
-            <button id="toggle-definitions" class="button">Show</button>
+             <div class="button-container">
+                 <button id="toggle-definitions" class="button">Latest Data</button>
+            </div>
             <div id="definitions" style="display: none;">
                 <p><strong>Open:</strong> The opening price of a stock for the current trading day.</p>
                 <p><strong>High:</strong> The highest price the stock reached during the current trading day.</p>

@@ -39,7 +39,14 @@
         .button-container {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 35px;
+            margin-bottom: 40px;
+        }
+        .button2-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            margin-bottom: 40px; 
         }
         .button {
             position: relative;
@@ -68,7 +75,7 @@
             width: 128px;
             height: 48px;
             border-radius: 10px;
-            background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100%);
+            background: linear-gradient(-45deg, #e81cff 0%, #004d99 100%);
             z-index: -10;
             pointer-events: none;
             transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -91,69 +98,77 @@
         .button:active::before {
             scale: 0.7;
         }
-        .container { 
-             margin-top: -20px
-        }
-        .recommnedation {
-            margin-top: 20px
-        }
         /* Add or modify other styles as needed */
         /* ... */
     </style>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-    <h1>AI Assistant</h1>
-    <p>Put in a stock, and the AI will use historical data and trends to analyze whether or not it is a good time to buy the stock.</p>
+    <h1>Stock Price Viewer</h1>
     <div class="container">
-        <label for="update-input">AI stock buy prediction:</label>
-        <input id="update-input" type="text">
+        <p>Check the latest price for any stock ticker</p>
+        <label for="update-input">Get Latest Stock Data:</label>
+        <input id="update-input" type="text" placeholder="Enter ticker (e.g., AAPL)">
         <div class="button-container">
-            <button class="button" id="get-latest-data" >Should I buy?</button>
+            <button id="get-latest-data" class="button">Latest Data</button>
+        </div>
+        <div id="latest-data" class="latest-data"></div>
+        <div id="data" style="display: none;">
+            <h2>What does all this mean?</h2>
+             <div class="button2-container">
+                 <button id="toggle-definitions" class="button">Show</button>
+            </div>
+            <div id="definitions" style="display: none;">
+                <p><strong>Open:</strong> The opening price of a stock for the current trading day.</p>
+                <p><strong>High:</strong> The highest price the stock reached during the current trading day.</p>
+                <p><strong>Low:</strong> The lowest price the stock reached during the current trading day.</p>
+                <p><strong>Close:</strong> The closing price of the stock for the current trading day.</p>
+            </div>
         </div>
     </div>
-    <div id="latest-data" class="latest-data"></div>
-    <div id="data" style="display: none;">
-        <h2>What does all this mean?</h2>
-        <button id="toggle-definitions">Show</button>
-        <div id="definitions" style="display: none;">
-            <p>Prediction</p>
-        </div>
-    </div>
-    <div class="recommnedation">
-        <div id="recommendation">
-            <h3>Recommendation:</h3>
-            <p id="recommendation-text"></p>
-        </div>
     <script>
     const getLatestDataButton = document.getElementById('get-latest-data');
-    const latestDataDiv = document.getElementById('latest-data');
-    const dataDiv = document.getElementById('data');
-    const recommendationDiv = document.getElementById('recommendation');
-    const recommendationText = document.getElementById('recommendation-text');
     const updateInput = document.getElementById('update-input');
-    function getRecommendation() {
+    function getLatestStockData() {
+        // get the stock ticker entered by the user
         const stockTicker = updateInput.value;
         getLatestDataButton.textContent = 'Loading...';
-        // get the recommendation
-        fetch(`http://localhost:8282/api/stocks/analyze/${stockTicker}`)
+        // make an API request to get the latest stock data
+        fetch("http://localhost:8282/api/stocks/latest_data/" + stockTicker)
             .then(response => response.json())
-            .then(recommendationData => {
-                const recommendation = recommendationData.recommendation;
-                const reason = recommendationData.reason;
-                recommendationText.textContent = `${recommendation} (${reason})`;
-                recommendationDiv.style.display = 'block';
-                getLatestDataButton.textContent = 'Should I Buy?';
+            .then(data => {
+                // display the latest stock data on the page
+                const latestDataElement = document.getElementById("latest-data");
+                latestDataElement.innerHTML = `<h2>Latest Stock Data for ${stockTicker.toUpperCase()} In The Last Day:</h2>`;
+                latestDataElement.innerHTML += `<p>Open: $${data.open}</p>`;
+                latestDataElement.innerHTML += `<p>High: $${data.high}</p>`;
+                latestDataElement.innerHTML += `<p>Low: $${data.low}</p>`;
+                latestDataElement.innerHTML += `<p>Close/Last Price: $${data.close}</p>`
+                const dataDiv = document.getElementById("data");
+                dataDiv.style.display = "block";
+                getLatestDataButton.textContent = 'Get Latest Data';
             })
             .catch(error => {
-                console.error(error);
-                getLatestDataButton.textContent = 'Should I Buy?';
+                console.error("Error:", error);
+                getLatestDataButton.textContent = 'Get Latest Data';
             });
     }
-    getLatestDataButton.addEventListener('click', getRecommendation);
-    // Add event listener for the Enter key press in the input field
+    document.getElementById("get-latest-data").addEventListener("click", getLatestStockData);
     updateInput.addEventListener("keydown", function (event) {
         if (event.key === 'Enter') {
-            getRecommendation();
+            getLatestStockData();
         }
     });
-</script>
+    const toggleButton = document.getElementById("toggle-definitions");
+    const definitions = document.getElementById("definitions");
+    toggleButton.addEventListener("click", function () {
+        if (definitions.style.display === "none") {
+            definitions.style.display = "block";
+            toggleButton.textContent = "Hide";
+        } else {
+            definitions.style.display = "none";
+            toggleButton.textContent = "Show";
+        }
+    });
+    </script>
+</body>
