@@ -42,7 +42,14 @@ title: Stock Price
         .button-container {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 35px;
+            margin-bottom: 40px;
+        }
+        .button2-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            margin-bottom: 40px; 
         }
         .button {
             position: relative;
@@ -111,8 +118,8 @@ title: Stock Price
         <div id="latest-data" class="latest-data"></div>
         <div id="data" style="display: none;">
             <h2>What does all this mean?</h2>
-             <div class="button-container">
-                 <button id="toggle-definitions" class="button">Latest Data</button>
+             <div class="button2-container">
+                 <button id="toggle-definitions" class="button">Show</button>
             </div>
             <div id="definitions" style="display: none;">
                 <p><strong>Open:</strong> The opening price of a stock for the current trading day.</p>
