@@ -5,11 +5,11 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #222; /* Dark background color */
-            color: #fff; /* White text color */
+            background-color: #222; 
+            color: #fff; 
         }
         h1 {
-            background-color: #004d99; /* Darker blue for the h1 background */
+            background-color: #004d99; 
             color: white;
             padding: 20px;
             margin: 0;
@@ -18,22 +18,22 @@
             max-width: 800px;
             margin: 30px auto;
             padding: 10px;
-            background-color: #333; /* Slightly darker background color for paragraphs */
+            background-color: #333; 
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            color: #fff; /* White text color for paragraphs */
+            color: #fff; 
         }
         label {
             display: block;
             margin-top: 20px;
-            color: #fff; /* White text color for labels */
+            color: #fff; 
         }
         input {
             font-size: 16px;
             padding: 10px;
-            border: 1px solid #e81cff; /* Add a #e81cff border around the text boxes */
+            border: 1px solid #e81cff; 
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a glow effect to text boxes */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
         }
         .button-container {
             display: flex;
@@ -55,7 +55,7 @@
             gap: 12px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 14px; /* Make the text smaller */
+            font-size: 14px; 
         }
         .button::before {
             content: '';
@@ -90,8 +90,6 @@
         .button:active::before {
             scale: 0.7;
         }
-        /* Add or modify other styles as needed */
-        /* ... */
     </style>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
@@ -101,7 +99,6 @@
 <h1>Home Page</h1>
 <p>Welcome to our Stock Viewer app where you can view the graphs and prices of different stocks using their stock ticker (e.g., AAPL, AMZN, etc.). Enter the desired stock ticker in all caps to generate an interactive graph showing data from the last 12 years.</p>
 
-<!-- Data Reader Section -->
 <p>
     <strong>Data Reader:</strong> This allows you to view the graph of the stock, zoom in and out; shows you when you times when it would've been best to invest or when to sell, and much more.
 </p>
@@ -109,7 +106,6 @@
     <button class="button" onclick="window.location.href='{{site.baseurl}}/reader'">Learn More</button>
 </div>
 
-<!-- Stock Price Viewer Section -->
 <p>
     <strong>Stock Price Viewer:</strong> Shows very concise data, only consisting of the high, low, close, and open of the user-inputted stock from the previous business day.
 </p>
@@ -117,7 +113,6 @@
     <button class="button" onclick="window.location.href='{{site.baseurl}}/stock_price'">Learn More</button>
 </div>
 
-<!-- Stock Analyzer Section -->
 <p>
     <strong>Stock Analyzer:</strong> The user is prompted to input a stock, and using our highly skilled AI, patterns and trends from previous years, and various other useful pieces of data, it will give a prediction on whether you should buy the stock.
 </p>
@@ -125,7 +120,6 @@
     <button class="button" onclick="window.location.href='{{site.baseurl}}/stock_analyze'">Learn More</button>
 </div>
 
-<!-- Stock Optimizer Section -->
 <p>
     <strong>Stock Optimizer:</strong> This page will prompt the user to input up to 8 stocks as a simulated investment portfolio. It will then give the most optimal weighting of each stock using data such as the correlation, volatility, Sharpe Ratio, and more.
 </p>

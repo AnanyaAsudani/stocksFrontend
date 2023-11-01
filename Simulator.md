@@ -14,14 +14,12 @@ title: Optimizer
             background-color: #f3f3f3;
             font-family: Arial, sans-serif;
         }
-
         h1 {
             background-color: #0073e6;
             color: white;
             padding: 20px;
             margin: 0;
         }
-
         p {
             max-width: 800px;
             margin: 30px auto;
@@ -30,13 +28,11 @@ title: Optimizer
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
         label {
             display: block;
             font-weight: bold;
             margin-top: 20px;
         }
-
         input {
             font-size: 16px;
             padding: 10px;
@@ -44,7 +40,6 @@ title: Optimizer
             border-radius: 5px;
             max-width: 800px;
         }
-
         button {
             background-color: #0073e6;
             color: white;
@@ -55,15 +50,12 @@ title: Optimizer
             transition: background-color 0.3s;
             margin-top: 20px;
         }
-
         button:hover {
             background-color: #005cbf;
         }
-
         .latest-data {
             margin-top: 30px;
         }
-
         #result {
             max-width: 800px;
             margin: 20px auto;
@@ -72,17 +64,14 @@ title: Optimizer
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
         #graph {
             max-width: 800px;
             margin: 20px auto;
         }
-
         h2 {
             color: #0073e6;
             margin-top: 20px;
         }
-
         #dictionary {
             max-width: 800px;
             margin: 20px auto;
@@ -91,7 +80,6 @@ title: Optimizer
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
         #toggleDictionary {
             background-color: #0073e6;
             color: white;
@@ -102,15 +90,12 @@ title: Optimizer
             transition: background-color 0.3s;
             margin-top: 20px;
         }
-
         #toggleDictionary:hover {
             background-color: #005cbf;
         }
-
         #dictionaryContent {
             display: none;
         }
-
         #dictionaryContent p {
             text-align: left;
         }

@@ -10,11 +10,11 @@ title: Analyze Price
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #222; /* Dark background color */
-            color: #fff; /* White text color */
+            background-color: #222; 
+            color: #fff; 
         }
         h1 {
-            background-color: #004d99; /* Darker blue for the h1 background */
+            background-color: #004d99; 
             color: white;
             padding: 20px;
             margin: 0;
@@ -23,22 +23,22 @@ title: Analyze Price
             max-width: 800px;
             margin: 30px auto;
             padding: 10px;
-            background-color: #333; /* Slightly darker background color for paragraphs */
+            background-color: #333; 
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            color: #fff; /* White text color for paragraphs */
+            color: #fff; 
         }
         label {
             display: block;
             margin-top: 20px;
-            color: #fff; /* White text color for labels */
+            color: #fff; 
         }
         input {
             font-size: 16px;
             padding: 10px;
-            border: 1px solid #e81cff; /* Add a #e81cff border around the text boxes */
+            border: 1px solid #e81cff; 
             border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a glow effect to text boxes */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
         }
         .button-container {
             display: flex;
@@ -60,7 +60,7 @@ title: Analyze Price
             gap: 12px;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 14px; /* Make the text smaller */
+            font-size: 14px; 
         }
         .button::before {
             content: '';
@@ -101,8 +101,6 @@ title: Analyze Price
         .recommnedation {
             margin-top: 20px
         }
-        /* Add or modify other styles as needed */
-        /* ... */
     </style>
 </head>
 <body>
