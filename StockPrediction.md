@@ -98,8 +98,18 @@ title: Analyze Price
         .container { 
              margin-top: -20px
         }
-        .recommnedation {
-            margin-top: 20px
+        .button-container2 {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        .recommnedation { 
+            margin-top: 0px; 
+            margin-bottom: -1000px;
+        }
+        .reccomendatText {
+            margin-top: 0px; 
         }
     </style>
 </head>
@@ -109,7 +119,7 @@ title: Analyze Price
     <div class="container">
         <label for="update-input">AI stock buy prediction:</label>
         <input id="update-input" type="text">
-        <div class="button-container">
+        <div class="button-container2">
             <button class="button" id="get-latest-data" >Should I buy?</button>
         </div>
     </div>
@@ -124,7 +134,7 @@ title: Analyze Price
     <div class="recommnedation">
         <div id="recommendation">
             <h3>Recommendation:</h3>
-            <p id="recommendation-text"></p>
+            <p id="recommendation-text" class="reccomendatText"></p>
         </div>
     <script>
     const getLatestDataButton = document.getElementById('get-latest-data');
