@@ -44,7 +44,7 @@ title: Reader
             display: flex;
             justify-content: center;
             margin-top: 30px;
-            margin-bottom: 30px;
+            margin-bottom: 12px;
         }
         .button {
             position: relative;
