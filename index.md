@@ -90,6 +90,12 @@
         .button:active::before {
             scale: 0.7;
         }
+        .button-container2 { 
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
     </style>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
@@ -123,7 +129,7 @@
 <p>
     <strong>Stock Optimizer:</strong> This page will prompt the user to input up to 8 stocks as a simulated investment portfolio. It will then give the most optimal weighting of each stock using data such as the correlation, volatility, Sharpe Ratio, and more.
 </p>
-<div class="button-container">
+<div class="button-container2">
     <button class="button" onclick="window.location.href='{{site.baseurl}}/optimizer'">Learn More</button>
 </div>
 </body>

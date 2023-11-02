@@ -4,18 +4,17 @@ title: Optimizer
 ---
 
 <head>
-    <title>Stock Portfolio Optimization</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
         body {
             text-align: center;
             margin: 0;
             padding: 0;
-            background-color: #f3f3f3;
             font-family: Arial, sans-serif;
+            background-color: #222; /* Dark background color */
+            color: #fff; /* White text color */
         }
         h1 {
-            background-color: #0073e6;
+            background-color: #004d99; /* Darker blue for the h1 background */
             color: white;
             padding: 20px;
             margin: 0;
@@ -24,109 +23,126 @@ title: Optimizer
             max-width: 800px;
             margin: 30px auto;
             padding: 10px;
-            background-color: #fff;
+            background-color: #333; /* Slightly darker background color for paragraphs */
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: #fff; /* White text color for paragraphs */
         }
         label {
             display: block;
-            font-weight: bold;
             margin-top: 20px;
+            color: #fff; /* White text color for labels */
         }
         input {
             font-size: 16px;
             padding: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #e81cff; /* Add a #e81cff border around the text boxes */
             border-radius: 5px;
-            max-width: 800px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a glow effect to text boxes */
         }
-        button {
-            background-color: #0073e6;
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 35px;
+            margin-bottom: 40px;
+        }
+        .button2-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            margin-bottom: 40px; 
+        }
+        .button {
+            position: relative;
+            width: 120px;
+            height: 40px;
+            background-color: #000;
+            display: flex;
+            align-items: center;
             color: white;
+            flex-direction: column;
+            justify-content: center;
             border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
+            padding: 12px;
+            gap: 12px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 20px;
+            font-size: 14px; /* Make the text smaller */
         }
-        button:hover {
-            background-color: #005cbf;
-        }
-        .latest-data {
-            margin-top: 30px;
-        }
-        #result {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
+        .button::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            left: -4px;
+            top: -1px;
+            margin: auto;
+            width: 128px;
+            height: 48px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(-45deg, #e81cff 0%, #004d99 100%);
+            z-index: -10;
+            pointer-events: none;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .button::after {
+            content: "";
+            z-index: -1;
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100%);
+            transform: translate3d(0, 0, 0) scale(0.95);
+            filter: blur(20px);
+        }
+        .button:hover::after {
+            filter: blur(30px);
+        }
+        .button:hover::before {
+            transform: rotate(-180deg);
+        }
+        .button:active::before {
+            scale: 0.7;
         }
         #graph {
             max-width: 800px;
             margin: 20px auto;
-        }
-        h2 {
-            color: #0073e6;
-            margin-top: 20px;
-        }
-        #dictionary {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        #toggleDictionary {
-            background-color: #0073e6;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 20px;
-        }
-        #toggleDictionary:hover {
-            background-color: #005cbf;
+            margin-bottom: 75px; 
         }
         #dictionaryContent {
             display: none;
         }
-        #dictionaryContent p {
-            text-align: left;
+        .dictionaryPos { 
+            margin-top: -50px;
         }
-        .container {
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px auto; 
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            max-width: 800px; 
+        .container2 { 
+            margin-top: -20px;
         }
     </style>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 <body>
     <h1>Stock Portfolio Optimization</h1>
     <p>This is a portfolio simulator where you can put up to 8 stocks to find the most optimal weighting between them and see it on a graph. There are also other terms that will be defined below.</p>
     <p>Enter up to 8 stock tickers by adding one and then clicking the add stock button. When you are done, click calculate:</p>
-    <div class="container">
+    <div class="container2">
     <form id="stock-form">
         <label for="update-input">Input up to 8 stocks:</label>
         <input id="update-input" type="text" placeholder="Enter a ticker (e.g., AAPL)">
-        <button type="button" id="add-stock">Add stock</button>
-        <button type="submit" id="calculate">Calculate</button>
+        <div class="button-container">
+            <button type="button" class="button" id="add-stock">Add stock</button>
+        </div>
+        <div class="button-container">
+            <button type="submit" class="button" id="calculate">Calculate</button>
+        </div>
     </form>
     </div>
     <div id="result" class="latest-data"></div>
     <div id="graph" class="latest-data"></div>
-    <div id="dictionary">
+    <div id="dictionary" class="dictionaryPos"></div>
         <h2>Dictionary</h2>
-        <button id="toggleDictionary">Show</button>
+        <div class="button-container">
+            <button class="button" id="toggleDictionary">Show</button>
+        </div>
         <div id="dictionaryContent">
             <p><strong>Volatility:</strong> Volatility measures how much a financial asset's price changes over time, indicating the level of risk in a portfolio. Higher volatility means greater price fluctuations.</p>
             <p><strong>Return:</strong> Return is the profit or loss from an investment compared to the initial amount invested. It's usually expressed as a percentage of the initial investment.</p>
@@ -137,7 +153,6 @@ title: Optimizer
             <p><strong>Red Dot (Most Optimal):</strong> The red dot on the graph represents the most optimal portfolio, which has the highest Sharpe Ratio, indicating the best risk-return trade-off. Investors often aim to construct a portfolio that closely resembles this point for optimal performance.</p>
             <p><strong>Most Optimal:</strong> "Most optimal" refers to the portfolio that offers the best risk-adjusted return, typically determined by the Sharpe Ratio. It represents the ideal balance between risk and return and is the goal for portfolio optimization.</p>
         </div>
-    </div>
     <script>
     const stockForm = document.getElementById("stock-form");
     const updateInput = document.getElementById("update-input");
