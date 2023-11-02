@@ -31,7 +31,7 @@
         input {
             font-size: 16px;
             padding: 10px;
-            border: 1px solid #e81cff; 
+            border: 3px solid #e81cff; 
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
         }

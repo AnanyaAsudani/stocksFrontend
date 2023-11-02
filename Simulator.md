@@ -36,7 +36,7 @@ title: Optimizer
         input {
             font-size: 16px;
             padding: 10px;
-            border: 1px solid #e81cff; /* Add a #e81cff border around the text boxes */
+            border: 3px solid #e81cff; /* Add a #e81cff border around the text boxes */
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a glow effect to text boxes */
         }
