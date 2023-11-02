@@ -42,10 +42,13 @@
             margin-top: 35px;
             margin-bottom: 40px;
         }
+        .button.add-button {
+            margin-right: 50px; /* Add some right margin to create space between the buttons */
+        }
         .button2-container {
             display: flex;
             justify-content: center;
-            margin-top: 40px;
+            margin-top: 25px;
             margin-bottom: 40px; 
         }
         .button {
@@ -125,18 +128,16 @@
         <label for="update-input">Input up to 8 stocks:</label>
         <input id="update-input" type="text" placeholder="Enter a ticker (e.g., AAPL)">
         <div class="button-container">
-            <button type="button" class="button" id="add-stock">Add stock</button>
-        </div>
-        <div class="button-container">
-            <button type="submit" class="button" id="calculate">Calculate</button>
-        </div>
+    <button type="button" class="button add-button" id="add-stock">Add stock</button>
+    <button type="submit" class="button" id="calculate">Calculate</button>
+</div>
     </form>
     </div>
     <div id="result" class="latest-data"></div>
     <div id="graph" class="latest-data"></div>
     <div id="dictionary" class="dictionaryPos"></div>
         <h2>Dictionary</h2>
-        <div class="button-container">
+        <div class="button2-container">
             <button class="button" id="toggleDictionary">Show</button>
         </div>
         <div id="dictionaryContent">
