@@ -98,8 +98,13 @@
         .button:active::before {
             scale: 0.7;
         }
-        /* Add or modify other styles as needed */
-        /* ... */
+        #graph {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        #dictionaryContent {
+            display: none;
+        }
     </style>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
@@ -113,10 +118,10 @@
         <label for="update-input">Input up to 8 stocks:</label>
         <input id="update-input" type="text" placeholder="Enter a ticker (e.g., AAPL)">
         <div class="button-container">
-            <button class="button" id="add-stock">Add stock</button>
+            <button type="button" class="button" id="add-stock">Add stock</button>
         </div>
         <div class="button-container">
-            <button class="button" id="calculate">Calculate</button>
+            <button type="submit" class="button" id="calculate">Calculate</button>
         </div>
     </form>
     </div>
