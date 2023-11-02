@@ -101,9 +101,16 @@
         #graph {
             max-width: 800px;
             margin: 20px auto;
+            margin-bottom: 75px; 
         }
         #dictionaryContent {
             display: none;
+        }
+        .dictionaryPos { 
+            margin-top: -50px;
+        }
+        .container2 { 
+            margin-top: -20px;
         }
     </style>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -113,7 +120,7 @@
     <h1>Stock Portfolio Optimization</h1>
     <p>This is a portfolio simulator where you can put up to 8 stocks to find the most optimal weighting between them and see it on a graph. There are also other terms that will be defined below.</p>
     <p>Enter up to 8 stock tickers by adding one and then clicking the add stock button. When you are done, click calculate:</p>
-    <div class="container">
+    <div class="container2">
     <form id="stock-form">
         <label for="update-input">Input up to 8 stocks:</label>
         <input id="update-input" type="text" placeholder="Enter a ticker (e.g., AAPL)">
@@ -127,7 +134,7 @@
     </div>
     <div id="result" class="latest-data"></div>
     <div id="graph" class="latest-data"></div>
-    <div id="dictionary">
+    <div id="dictionary" class="dictionaryPos"></div>
         <h2>Dictionary</h2>
         <div class="button-container">
             <button class="button" id="toggleDictionary">Show</button>
@@ -142,7 +149,6 @@
             <p><strong>Red Dot (Most Optimal):</strong> The red dot on the graph represents the most optimal portfolio, which has the highest Sharpe Ratio, indicating the best risk-return trade-off. Investors often aim to construct a portfolio that closely resembles this point for optimal performance.</p>
             <p><strong>Most Optimal:</strong> "Most optimal" refers to the portfolio that offers the best risk-adjusted return, typically determined by the Sharpe Ratio. It represents the ideal balance between risk and return and is the goal for portfolio optimization.</p>
         </div>
-    </div>
     <script>
     const stockForm = document.getElementById("stock-form");
     const updateInput = document.getElementById("update-input");
