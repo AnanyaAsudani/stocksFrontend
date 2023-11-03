@@ -187,9 +187,10 @@ title: Optimizer
             const optimalWeights = data.max_sharpe_weights.map(weight => weight.toFixed(2));
             //display the results
             resultDiv.innerHTML = `
-                <p>Maximum Sharpe Ratio Portfolio:</p>
+                <p><strong>Maximum Sharpe Ratio Portfolio:</strong</p>
                 <p>Expected Return: ${data.max_sharpe_ret.toFixed(2)}</p>
                 <p>Volatility: ${data.max_sharpe_vol.toFixed(2)}</p>
+                <p>Sharpe Ratio: ${data.max_sharpe.toFixed(2)}</p>
                 <p>Optimal Weights: ${optimalWeights.join(', ')}</p>
             `;
             // plotly scatter plot for portfolio optimization
@@ -247,7 +248,6 @@ title: Optimizer
             toggleDictionaryButton.innerText = "Show";
         }
     });
-
 
 </script>
 
